@@ -1,6 +1,5 @@
+#include <rustrpm.h>
 #include <stdio.h>
-
-#include "../include/rustrpm.h"
 
 int test_add() {
     int32_t result = add(10, 20);
