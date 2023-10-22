@@ -13,7 +13,6 @@ BuildRequires:  gcc
 %description
 A ddummy sample project to try out Rust + C
 
-%define _topdir /build/build/rpmbuild
 %define sourcedir %{name}-%{version}.tar.gz
 %define debug_package %{nil}
 
