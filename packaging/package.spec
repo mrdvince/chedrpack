@@ -13,6 +13,9 @@ BuildRequires:  gcc
 %description
 A ddummy sample project to try out Rust + C
 
+%define sourcedir %{name}-%{version}.tar.gz
+%define debug_package %{nil}
+
 %prep
 %setup -q
 
