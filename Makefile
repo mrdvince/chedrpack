@@ -15,6 +15,7 @@ INCLUDE_DIR = /usr/local/include
 
 all:
 	cargo build --release
+	mkdir -p include
 	cbindgen --config cbindgen.toml --crate rustrpm --output include/rustrpm.h
 
 install:
