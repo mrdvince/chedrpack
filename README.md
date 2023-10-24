@@ -1,4 +1,4 @@
-# chedrpack
+# Intro
 
 Trying a little C from Rust and while at it might as well trying building an rpm.
 
@@ -12,6 +12,7 @@ This should build the rust package in release mode, and also use cbindgen to gen
 
 This basically just runs the following commands:
 Mac:
+
 ```bash
 	cargo build --release
 	mkdir -p include
@@ -19,6 +20,7 @@ Mac:
 ```
 
 On linux (tried with almalinux):
+
 ```bash
 	mkdir -p $(SOURCE_DIR)
 	tar czvf $(SOURCE_DIR)/$(TAR_NAME) --exclude=target --exclude=.git --transform 's,^,chedrpack-$(VERSION)/,' *
@@ -28,9 +30,11 @@ On linux (tried with almalinux):
 # Install
 
 Simply run:
+
 ```bash
     make install
 ```
+
 Which runs the below commands to install:
 Mac:
 
@@ -38,7 +42,9 @@ Mac:
     install -m 755 target/release/$(LIB_NAME) $(LIB_DIR)/$(LIB_NAME)
 	install -m 644 include/$(HEADER_NAME) $(INCLUDE_DIR)/$(HEADER_NAME)
 ```
+
 where the variables are:
+
 ```bash
 LIB_NAME = libchedrpack.a
 HEADER_NAME = chedrpack.h
@@ -46,8 +52,41 @@ LIB_DIR = /usr/local/lib
 INCLUDE_DIR = /usr/local/include
 ```
 
-Linux: 
+Linux:
 make install runs the following:
+
 ```bash
 	yum -y localinstall build/rpmbuild/RPMS/aarch64/chedrpack-0.1.0-1.el9.aarch64.rpm
+```
+
+# Uninstall
+
+```bash
+make uninstall
+```
+
+Runs the following commands:
+Mac:
+
+```bash
+    rm -f $(LIB_DIR)/$(LIB_NAME)
+	rm -f $(INCLUDE_DIR)/$(HEADER_NAME)
+```
+
+Linux:
+
+```bash
+    yum -y remove chedrpack
+```
+
+# Test
+
+```bash
+    make test
+```
+
+Runs:
+
+```bash
+	gcc -o tests/test_add tests/test_add.c -l chedrpack && tests/test_add && rm tests/test_add
 ```
