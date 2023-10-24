@@ -1,7 +1,7 @@
 # Variables common to both environments
 VERSION = 0.1.0
-LIB_NAME = librustrpm.a
-HEADER_NAME = rustrpm.h
+LIB_NAME = libchedrpack.a
+HEADER_NAME = chedrpack.h
 
 # Detect the operating system
 UNAME_S := $(shell uname -s)
@@ -16,7 +16,7 @@ INCLUDE_DIR = /usr/local/include
 all:
 	cargo build --release
 	mkdir -p include
-	cbindgen --config cbindgen.toml --crate rustrpm --output include/rustrpm.h
+	cbindgen --config cbindgen.toml --crate chedrpack --output include/chedrpack.h
 
 install:
 	install -m 755 target/release/$(LIB_NAME) $(LIB_DIR)/$(LIB_NAME)
@@ -31,7 +31,7 @@ clean:
 
 # Conditional directive for Linux
 else
-TAR_NAME = rustrpm-$(VERSION).tar.gz
+TAR_NAME = chedrpack-$(VERSION).tar.gz
 SOURCE_DIR = build/rpmbuild/SOURCES
 RPMBUILD_DIR = /build/build/rpmbuild
 
@@ -46,14 +46,14 @@ deps:
 
 package:
 	mkdir -p $(SOURCE_DIR)
-	tar czvf $(SOURCE_DIR)/$(TAR_NAME) --exclude=target --exclude=.git --transform 's,^,rustrpm-$(VERSION)/,' *
+	tar czvf $(SOURCE_DIR)/$(TAR_NAME) --exclude=target --exclude=.git --transform 's,^,chedrpack-$(VERSION)/,' *
 	rpmbuild --define "_topdir /build/build/rpmbuild" -bb packaging/package.spec
 
 install:
-	yum -y localinstall build/rpmbuild/RPMS/aarch64/rustrpm-0.1.0-1.el9.aarch64.rpm
+	yum -y localinstall build/rpmbuild/RPMS/aarch64/chedrpack-0.1.0-1.el9.aarch64.rpm
 
 uninstall:
-	yum -y remove rustrpm
+	yum -y remove chedrpack
 
 clean:
 	rm -rf $(RPMBUILD_DIR)
@@ -62,4 +62,4 @@ clean:
 endif
 
 test:
-	gcc -o tests/test_add tests/test_add.c -l rustrpm && tests/test_add && rm tests/test_add
+	gcc -o tests/test_add tests/test_add.c -l chedrpack && tests/test_add && rm tests/test_add

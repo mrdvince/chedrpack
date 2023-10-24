@@ -1,4 +1,4 @@
-# rustrpm
+# chedrpack
 
 Trying a little C from Rust and while at it might as well trying building an rpm.
 
@@ -16,5 +16,4 @@ This basically just runs the following commands:
 	cargo build --release
 	mkdir -p include
 	cbindgen --config cbindgen.toml --crate rustrpm --output include/rustrpm.h
-
 ```

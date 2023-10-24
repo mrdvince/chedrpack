@@ -1,5 +1,5 @@
 [package]
-name = "rustrpm"
+name = "chedrpack"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,5 +8,5 @@ edition = "2021"
 [dependencies]
 
 [lib]
-name = "rustrpm"
+name = "chedrpack"
 crate-type = ["staticlib"]

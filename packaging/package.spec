@@ -1,10 +1,10 @@
-Name:       rustrpm
+Name:       chedrpack
 Version:    0.1.0
 Release:    1%{?dist}
 Summary:    Trying out packaging rust and c rpms
 
 License:        MIT
-URL:            https://github.com/mrdvince/rustrpm
+URL:            https://github.com/mrdvince/chedrpack
 
 Source0:        %{name}-%{version}.tar.gz
 
@@ -23,9 +23,9 @@ A ddummy sample project to try out Rust + C
 cargo build --release
 
 %install
-install -Dm755 target/release/librustrpm.a %{buildroot}/usr/local/lib/librustrpm.a
-install -Dm644 include/rustrpm.h %{buildroot}/usr/local/include/rustrpm.h
+install -Dm755 target/release/libchedrpack.a %{buildroot}/usr/local/lib/libchedrpack.a
+install -Dm644 include/chedrpack.h %{buildroot}/usr/local/include/chedrpack.h
 
 %files
-/usr/local/lib/librustrpm.a
-/usr/local/include/rustrpm.h
+/usr/local/lib/libchedrpack.a
+/usr/local/include/chedrpack.h
